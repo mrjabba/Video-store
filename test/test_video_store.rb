@@ -2,19 +2,21 @@ require 'minitest/unit'
 require 'minitest/autorun'
 require_relative '../statement'
 require_relative '../movie'
+require_relative '../new_release_movie'
+require_relative '../childrens_movie'
+require_relative '../regular_movie'
 require_relative '../rental'
 
 class TestVideoStore < MiniTest::Unit::TestCase
   def setup
     @statement = Statement.new("Customer")
-    @new_release_1 = Movie.new("New release 1", Movie::NEW_RELEASE)
-    @new_release_2 = Movie.new("New release 2", Movie::NEW_RELEASE)
-    @childrens_movie = Movie.new("Childrens", Movie::CHILDRENS)
-    @regular1 = Movie.new("Regular 1", Movie::REGULAR)
-    @regular2 = Movie.new("Regular 2", Movie::REGULAR)
-    @regular3 = Movie.new("Regular 3", Movie::REGULAR)
+    @new_release_1 = NewReleaseMovie.new("New release 1")
+    @new_release_2 = NewReleaseMovie.new("New release 2")
+    @childrens_movie = ChildrensMovie.new("Childrens")
+    @regular1 = RegularMovie.new("Regular 1")
+    @regular2 = RegularMovie.new("Regular 2")
+    @regular3 = RegularMovie.new("Regular 3")
   end
-
 
   def test_single_new_release_statement_totals
     @statement.add_rental Rental.new(@new_release_1, 3)
