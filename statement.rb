@@ -18,10 +18,7 @@ class Statement
 
   def generate
     clear_totals
-    statement_text = header
-    statement_text += rental_lines
-    statement_text += footer
-    statement_text
+    header + rental_lines + footer
   end
 
   private
