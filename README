@@ -1,0 +1,8 @@
+Video store
+(Chapter 1 of the refactoring book)
+
+Started with the initial version of the video store application from the
+Ruby edition of the refactoring book.  Added some initial tests based on
+the tests Uncle Bob had in his refactoring video of the video store for
+Java.  From there, I applied the same refactoring steps that Uncle Bob
+made in Java to the Ruby code.
