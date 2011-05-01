@@ -11,18 +11,7 @@ class Movie
   end
 
   def determine_amount(days_rented)
-    rental_amount = 0
-    case @price_code
-      when REGULAR
-        rental_amount += 2
-        rental_amount += (days_rented - 2) * 1.5 if days_rented > 2
-      when NEW_RELEASE
-        rental_amount += days_rented * 3
-      when CHILDRENS
-        rental_amount += 1.5
-        rental_amount += (days_rented - 3) * 1.5 if days_rented > 3
-    end
-    rental_amount
+    raise 'Called abstract method: determine_amount(days_rented)'
   end
 
   def determine_frequent_renter_points(days_rented)
