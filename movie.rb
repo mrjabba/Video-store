@@ -15,7 +15,6 @@ class Movie
   end
 
   def determine_frequent_renter_points(days_rented)
-    bonus_is_earned = (@price_code == NEW_RELEASE && days_rented > 1)
-    (bonus_is_earned) ? 2 : 1
+    1
   end
 end
