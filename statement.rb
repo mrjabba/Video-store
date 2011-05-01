@@ -1,8 +1,6 @@
 require_relative 'movie'
 
 class Statement
-  attr_reader :customer_name
-
   def initialize(name)
     @customer_name = name
     @rentals = []
@@ -21,37 +19,63 @@ class Statement
   end
 
   def generate
+    clear_totals
+    statement_text = header
+    statement_text += rental_lines
+    statement_text += footer
+    statement_text
+  end
+
+  private
+
+  def clear_totals
     @total_amount, @frequent_renter_points = 0, 0
-    result = "Rental Record for #{@customer_name}\n"
-    @rentals.each do |element|
-      this_amount = 0
+  end
 
-      # determine amounts for each line
-      case element.movie.price_code
-        when Movie::REGULAR
-          this_amount += 2
-          this_amount += (element.days_rented - 2) * 1.5 if element.days_rented > 2
-        when Movie::NEW_RELEASE
-          this_amount += element.days_rented * 3
-        when Movie::CHILDRENS
-          this_amount += 1.5
-          this_amount += (element.days_rented - 3) * 1.5 if element.days_rented > 3
-      end
+  def header
+    "Rental Record for #{@customer_name}\n"
+  end
 
-      # add frequent renter points
-      @frequent_renter_points += 1
-      # add bonus for a two day new release rental
-      if element.movie.price_code == Movie::NEW_RELEASE && element.days_rented > 1
-        @frequent_renter_points += 1
-      end
-      # show figures for this rental
-      result += "\t" + element.movie.title + "\t" + this_amount.to_s + "\n"
-      @total_amount += this_amount
+  def rental_lines
+    lines = ""
+    @rentals.each do |rental|
+      lines += rental_line(rental)
     end
+    lines
+  end
 
-    # add footer lines
-    result += "Amount owed is #{@total_amount}\n"
-    result += "You earned #{@frequent_renter_points} frequent renter points"
-    result
+  def rental_line(rental)
+    rental_amount = determine_amount(rental)
+    @frequent_renter_points += determine_frequent_renter_points(rental)
+    @total_amount += rental_amount
+    format_rental_line(rental, rental_amount)
+  end
+
+  def determine_amount(rental)
+    rental_amount = 0
+    case rental.movie.price_code
+      when Movie::REGULAR
+        rental_amount += 2
+        rental_amount += (rental.days_rented - 2) * 1.5 if rental.days_rented > 2
+      when Movie::NEW_RELEASE
+        rental_amount += rental.days_rented * 3
+      when Movie::CHILDRENS
+        rental_amount += 1.5
+        rental_amount += (rental.days_rented - 3) * 1.5 if rental.days_rented > 3
+    end
+    rental_amount
+  end
+
+  def determine_frequent_renter_points(rental)
+    bonus_is_earned = rental.movie.price_code == Movie::NEW_RELEASE && rental.days_rented > 1
+    (bonus_is_earned) ? 2 : 1
+  end
+
+  def format_rental_line(rental, rental_amount)
+    "\t#{rental.title}\t#{rental_amount}\n"
+  end
+
+  def footer
+    "Amount owed is #{@total_amount}\nYou earned #{@frequent_renter_points} frequent renter points"
   end
 end

@@ -4,4 +4,8 @@ class Rental
   def initialize(movie, days_rented)
     @movie, @days_rented = movie, days_rented
   end
+
+  def title
+    @movie.title
+  end
 end
