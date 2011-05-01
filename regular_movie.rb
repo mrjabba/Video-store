@@ -2,7 +2,7 @@ require_relative 'movie'
 
 class RegularMovie < Movie
   def initialize(title)
-    super(title, Movie::REGULAR)
+    super(title)
   end
 
   def determine_amount(days_rented)

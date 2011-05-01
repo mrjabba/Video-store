@@ -1,9 +1,12 @@
 require_relative 'rental'
 require_relative 'statement'
+require_relative 'new_release_movie'
+require_relative 'childrens_movie'
+require_relative 'regular_movie'
 
-star_wars = Movie.new('Star Wars', Movie::REGULAR)
-toy_story = Movie.new('Toy Story', Movie::CHILDRENS)
-iron_man = Movie.new('Iron Man 2', Movie::NEW_RELEASE)
+star_wars = RegularMovie.new('Star Wars')
+toy_story = ChildrensMovie.new('Toy Story')
+iron_man = NewReleaseMovie.new('Iron Man 2')
 
 regular_rental = Rental.new(star_wars, 5)
 kids_rental = Rental.new(toy_story, 3)

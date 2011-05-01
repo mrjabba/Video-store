@@ -1,7 +1,6 @@
 require 'minitest/unit'
 require 'minitest/autorun'
 require_relative '../statement'
-require_relative '../movie'
 require_relative '../new_release_movie'
 require_relative '../childrens_movie'
 require_relative '../regular_movie'
