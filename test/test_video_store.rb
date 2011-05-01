@@ -1,6 +1,7 @@
 require 'minitest/unit'
 require 'minitest/autorun'
 require_relative '../statement'
+require_relative '../movie'
 require_relative '../rental'
 
 class TestVideoStore < MiniTest::Unit::TestCase

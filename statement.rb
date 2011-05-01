@@ -1,5 +1,3 @@
-require_relative 'movie'
-
 class Statement
   def initialize(name)
     @customer_name = name
@@ -46,14 +44,9 @@ class Statement
 
   def rental_line(rental)
     rental_amount = rental.determine_amount
-    @frequent_renter_points += determine_frequent_renter_points(rental)
+    @frequent_renter_points += rental.determine_frequent_renter_points
     @total_amount += rental_amount
     format_rental_line(rental, rental_amount)
-  end
-
-  def determine_frequent_renter_points(rental)
-    bonus_is_earned = rental.movie.price_code == Movie::NEW_RELEASE && rental.days_rented > 1
-    (bonus_is_earned) ? 2 : 1
   end
 
   def format_rental_line(rental, rental_amount)
