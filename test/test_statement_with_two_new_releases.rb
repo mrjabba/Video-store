@@ -1,5 +1,4 @@
-require 'minitest/unit'
-require 'minitest/autorun'
+require 'helper.rb'
 require_relative 'video_fixture'
 
 class TestStatementWithTwoNewReleases < MiniTest::Unit::TestCase

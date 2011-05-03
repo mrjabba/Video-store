@@ -3,6 +3,8 @@
 require 'rake/clean'
 require 'rake/testtask'
 
+CLEAN.include('test/coverage')
+
 task :default => [:test]
 
 Rake::TestTask.new do |test|
