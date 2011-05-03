@@ -1,9 +1,6 @@
 require 'helper.rb'
-require_relative 'video_fixture'
 
 class TestMovie < MiniTest::Unit::TestCase
-  include VideoFixture
-
   def setup
     @movie = Movie.new("abstract movie")
   end
