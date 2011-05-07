@@ -1,6 +1,9 @@
-require_relative 'movie'
+require_relative 'store'
 
-class ChildrensMovie < Movie
+class ChildrensMovie
+  include Nameable
+  include RentalCalculator
+
   def initialize(title)
     super(title)
   end

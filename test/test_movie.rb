@@ -1,13 +1,9 @@
 require 'helper.rb'
 
 class TestMovie < MiniTest::Unit::TestCase
-  def setup
-    @movie = Movie.new("abstract movie")
-  end
-
-  def test_it_should_raise_error_when_abstract_determine_amount_is_called
-    assert_raises RuntimeError do
-      @movie.determine_amount(2)
-    end
+  def test_movies_should_have_titles
+    title = "Starship Troopers"
+    @movie = Movie.new(title)
+    assert_equal title, @movie.title
   end
 end
